@@ -49,7 +49,7 @@ def  summarize(transcript,question):
         chunk_size=1000,
         chunk_overlap=200
         )
-        # transcript=get_transcript_from_url()
+       
 
         #BREAKING DOWN INTO CHUNKS
         chunks=splitter.split_text(transcript)
@@ -57,15 +57,9 @@ def  summarize(transcript,question):
         repo_id="sentence-transformers/all-MiniLM-L6-v2",
         task="feature-extraction"
     )
-       
-        #REMOVED: The deletion code from here - it was causing permission error
-        # if os.path.exists("./youtube_transcripts"):
-        #     shutil.rmtree("./youtube_transcripts")
-        
         #vector-store
         vector_store=Chroma(
         embedding_function=embeddings,
-        #REMOVED: persist_directory - not needed since we recreate each time
         collection_name="youtube_transcripts"
         )
 
